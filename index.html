@@ -23,23 +23,31 @@
 <body onload = 'startConverting()'>
 	<h4 align="center">Uptalk Demo</h4>
 	<div class="container-fluid">
-    	<form>
-    	  <div class="form-group">
-    	    <label for="inputTextArea">Input conversation</label>
-    	    <textarea class="form-control" id="inputTextArea" rows="3" placeholder="Enter a phrase"></textarea>
-    	  </div>
-    	</form>
+    	<div class="row">
+    		<div class="col-md-12">
+		    	<form>
+		    	  <div class="form-group">
+		    	    <label for="inputTextArea">Input conversation</label>
+		    	    <textarea class="form-control" id="inputTextArea" rows="3" placeholder="Enter a phrase"></textarea>
+		    	  </div>
+		    	</form>
+		    </div>
+		</div>
     </div>
-	<button id="startTranscription" class="btn btn-primary">Start</button>
-	<br>
-	<br>
-	<button class="btn btn-primary" onclick="sendNewUptalkPhrases()">Submit</button>
-	<br>
-	<br>
-	<button id="stopTranscription" class="btn btn-primary">Stop</button>
-	<br>
-	<br>
-	<script type="text/javascript">
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-4">
+				<center><button id="startTranscription" class="btn btn-primary">Start</button></center>
+    		</div>
+    		<div class="col-md-4">
+				<center><button id="stopTranscription" class="btn btn-primary">Stop</button></center>
+			</div>
+    		<div class="col-md-4">
+				<center><button class="btn btn-primary" onclick="sendNewUptalkPhrases()">Submit</button></center>
+			</div>
+		</div>
+	</div>
+		<script type="text/javascript">
 
 
 
