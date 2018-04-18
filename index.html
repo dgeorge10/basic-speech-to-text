@@ -78,20 +78,42 @@
       //     });
       //  });
 
+      function getCORS(url, success) {
+          var xhr = new XMLHttpRequest();
+          if (!('withCredentials' in xhr)) xhr = new XDomainRequest(); // fix IE8/9
+          xhr.open('GET', url);
+          xhr.onload = success;
+          xhr.send();
+          return xhr;
+        }
+
        function testIt() {
         // var url = http://uptalk.tech/Uptalk/api.py?endpoint=phrase&action=analyze&data=fly%20eagles%20fly
         //SHOULD BE USING ANALYZE BECAUSE SAVE DOESN"T SPLIT UP WORDS
-         var saveData = document.getElementById('inputTextArea').value;
-         //console.log(saveData);
-           $.ajax({
-             url: 'http://uptalk.tech/Uptalk/api.py?endpoint=phrase&actoin=analyze',
-             type: 'GET',
-             data: {'data': saveData},
-             success: function(result){
-                 $("inputTextArea").html(result);
-               }
-          });
-       }
+         var analyzeData = document.getElementById('inputTextArea').value;
+         var url = 'http://uptalk.tech/Uptalk/api.py?endpoint=phrase&action=analyze&data='+analyzeData;
+         console.log(analyzeData);
+         console.log(url);
+         // example request
+         getCORS(url, function(request){
+             var response = request.currentTarget.response || request.target.responseText;
+             console.log(response);
+         });
+
+       //
+       //     $.ajax({
+       //       url: url,
+       //       type: 'GET',
+       //       success: function(result){
+       //           $("inputTextArea").html(result);
+       //         }
+       //    });
+       // //
+       // //    $.get(url).done(function (data) {
+       //      console.log(data);
+       // });
+
+     }
 
 		var r = document.getElementById('inputTextArea');
 
