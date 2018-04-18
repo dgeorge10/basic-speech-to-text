@@ -13,11 +13,6 @@
 		body{
 			font-family: verdana;
 		}
-		button{
-			font-size: 20px;
-			top: 240px;
-			left: 50%;
-		}
 	</style>
 
 </head>
@@ -51,32 +46,6 @@
 
 		<script type="text/javascript">
 
-      // console.log("Hello World");
-      //  var phraseDataEndpoint = "http://uptalk.tech/Uptalk/api.py?endpoint=phrase&action=save&data=";
-      //  var phraseDataEndpointWithParams = phraseDataEndpoint + addParams();
-      //
-      //  console.log("sendNewUptalkPhrase phraseDataEndpoint = " + phraseDataEndpoint);
-      //
-      //
-      //  $.get(phraseDataEndpoint, function(data) {
-      //      completionBlock(data);
-      //  }).fail(function(jqXHR, textStatus) {
-      //      completionBlock(null);
-      //  });
-
-      // $(document).ready(function(){
-      //     $("submitButton").click(function(){
-      //       var saveData = $('inputTextArea').val();
-      //       console.log(saveData);
-      //         $.ajax({
-      //           type: 'GET',
-      //           url: 'http://uptalk.tech/Uptalk/api.py?',
-      //           data: {'endpoint': 'phrase&action=save&data='+saveData},
-      //           success: function(result){
-      //               $("inputTextArea").html(result);
-      //         }});
-      //     });
-      //  });
 
       function getCORS(url, success) {
           var xhr = new XMLHttpRequest();
@@ -99,20 +68,6 @@
              var response = request.currentTarget.response || request.target.responseText;
              console.log(response);
          });
-
-       //
-       //     $.ajax({
-       //       url: url,
-       //       type: 'GET',
-       //       success: function(result){
-       //           $("inputTextArea").html(result);
-       //         }
-       //    });
-       // //
-       // //    $.get(url).done(function (data) {
-       //      console.log(data);
-       // });
-
      }
 
 		var r = document.getElementById('inputTextArea');
