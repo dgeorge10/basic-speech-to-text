@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,13 +44,54 @@
 				<center><button id="stopTranscription" class="btn btn-primary">Stop</button></center>
 			</div>
     		<div class="col-md-4">
-				<center><button class="btn btn-primary" onclick="sendNewUptalkPhrases()">Submit</button></center>
+				<center><button id = "submitButton" class="btn btn-primary" onclick="testIt()">Submit</button></center>
 			</div>
 		</div>
 	</div>
+
 		<script type="text/javascript">
 
+      // console.log("Hello World");
+      //  var phraseDataEndpoint = "http://uptalk.tech/Uptalk/api.py?endpoint=phrase&action=save&data=";
+      //  var phraseDataEndpointWithParams = phraseDataEndpoint + addParams();
+      //
+      //  console.log("sendNewUptalkPhrase phraseDataEndpoint = " + phraseDataEndpoint);
+      //
+      //
+      //  $.get(phraseDataEndpoint, function(data) {
+      //      completionBlock(data);
+      //  }).fail(function(jqXHR, textStatus) {
+      //      completionBlock(null);
+      //  });
 
+      // $(document).ready(function(){
+      //     $("submitButton").click(function(){
+      //       var saveData = $('inputTextArea').val();
+      //       console.log(saveData);
+      //         $.ajax({
+      //           type: 'GET',
+      //           url: 'http://uptalk.tech/Uptalk/api.py?',
+      //           data: {'endpoint': 'phrase&action=save&data='+saveData},
+      //           success: function(result){
+      //               $("inputTextArea").html(result);
+      //         }});
+      //     });
+      //  });
+
+       function testIt() {
+        // var url = http://uptalk.tech/Uptalk/api.py?endpoint=phrase&action=analyze&data=fly%20eagles%20fly
+        //SHOULD BE USING ANALYZE BECAUSE SAVE DOESN"T SPLIT UP WORDS
+         var saveData = document.getElementById('inputTextArea').value;
+         //console.log(saveData);
+           $.ajax({
+             url: 'http://uptalk.tech/Uptalk/api.py?endpoint=phrase&actoin=analyze',
+             type: 'GET',
+             data: {'data': saveData},
+             success: function(result){
+                 $("inputTextArea").html(result);
+               }
+          });
+       }
 
 		var r = document.getElementById('inputTextArea');
 
