@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Speech to text Demo</title>
+	<title>Uptalk Demo</title>
 	<style type="text/css">
 		body{
 			font-family: verdana;
@@ -17,7 +17,6 @@
 		}
 		button{
 			font-size: 20px;
-			position: absolute;
 			top: 240px;
 			left: 50%;
 		}
@@ -25,20 +24,14 @@
 
 </head>
 <body>
-	<h4 align="center">Speech to text converter in JS</h4>
+	<h4 align="center">Uptalk Demo</h4>
 	<div id ="result"></div>
 	<button onclick="startConverting()">Start</button>
+	<br>
+	<button onclick = "analyze()">Stop</button>
 	<script type="text/javascript">
-
-			navigator.mediaDevices.getUserMedia({ audio: true })
-	      	.then(function(stream) {
-	        	console.log('You let me use your mic!')
-	      	})
-	      	.catch(function(err) {
-	       	 console.log('No mic for you!')
-	      	});
 			
-			var r = document.getElementById('result');
+		var r = document.getElementById('result');
 
 		function startConverting(){
 
@@ -78,6 +71,28 @@
 			}
 		}
 
+	</script>
+	<div id = 'api'></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		// $(document).readyfunction(){
+		// 	$.ajax({
+		// 		type: 'GET',
+		// 		url: 'http://uptalk.tech/Uptalk/api.py?endpoint=analyze&data=test',
+		// 		success: function(data){
+		// 			console.log('success',data)
+		// 		}
+		// });
+		$(document).ready(function(){
+    		$("button").click(function(){
+        		$.ajax({
+        			type: 'GET',
+        			url: 'http://uptalk.tech/Uptalk/api.py?endpoint=analyze&data=test', 
+        			success: function(result){
+            			$("api").html(result);
+        		}});
+    		});
+		});
 	</script>
 </body>
 </html>
