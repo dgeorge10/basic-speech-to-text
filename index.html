@@ -12,15 +12,6 @@
 		body{
 			font-family: verdana;
 		}
-		#result{
-			height: 200px;
-			border: 1px solid #ccc;
-			padding: 10px;
-			box-shadow: 0 0 10px 0 #bbb;
-			margin-bottom: 30px;
-			font-size: 14px;
-			line-height: 25px; 
-		}
 		button{
 			font-size: 20px;
 			top: 240px;
@@ -29,7 +20,7 @@
 	</style>
 
 </head>
-<body>
+<body onload = 'startConverting()'>
 	<h4 align="center">Uptalk Demo</h4>
 	<div class="container-fluid">
     	<form>
@@ -39,14 +30,20 @@
     	  </div>
     	</form>
     </div>
-	<div id ="result"></div>
-	<button class="btn btn-primary" onclick="startConverting()">Start</button>
+	<button id="startTranscription" class="btn btn-primary">Start</button>
+	<br>
 	<br>
 	<button class="btn btn-primary" onclick="sendNewUptalkPhrases()">Submit</button>
-	<button onclick = "analyze()">Stop</button>
+	<br>
+	<br>
+	<button id="stopTranscription" class="btn btn-primary">Stop</button>
+	<br>
+	<br>
 	<script type="text/javascript">
-			
-		var r = document.getElementById('result');
+
+
+
+		var r = document.getElementById('inputTextArea');
 
 		function startConverting(){
 
@@ -56,7 +53,14 @@
 				speechRecognizer.continuous = true;
 				speechRecognizer.interimResults = true;
 				speechRecognizer.lang = 'en-US';
-				speechRecognizer.start()
+        $('#startTranscription').click(function() {
+          speechRecognizer.start();
+        });
+
+        $('#stopTranscription').click(function(){
+          speechRecognizer.stop();
+        })
+
 
 				var finalTranscripts = '';
 
@@ -72,12 +76,17 @@
 						}
 					}
 
-					r.innerHTML = finalTranscripts + '<span style = "color:#999">' + interimTranscripts + '</span>';
+					r.innerHTML = finalTranscripts + interimTranscripts;
 				};
 
 				speechRecognizer.onerror = function(event){
 					console.log(event);
 				};
+        speechRecognizer.onspeechend = function(){
+          console.log("sound stopped");
+          speechRecognizer.stop();
+        }
+
 
 			}else{
 
@@ -89,7 +98,7 @@
 	</script>
 	<div id = 'api'></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>
+	<!-- <script>
 		// $(document).readyfunction(){
 		// 	$.ajax({
 		// 		type: 'GET',
@@ -102,12 +111,12 @@
     		$("button").click(function(){
         		$.ajax({
         			type: 'GET',
-        			url: 'http://uptalk.tech/Uptalk/api.py?endpoint=analyze&data=test', 
+        			url: 'http://uptalk.tech/Uptalk/api.py?endpoint=analyze&data=test',
         			success: function(result){
             			$("api").html(result);
         		}});
     		});
 		});
-	</script>
+	</script> -->
 </body>
 </html>
